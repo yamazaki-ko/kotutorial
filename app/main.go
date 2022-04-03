@@ -3,8 +3,6 @@ package main
 import "fmt"
 
 func main() {
-
-	// server
 	blog := New()
 
 	fmt.Println(blog)
