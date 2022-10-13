@@ -1,0 +1,47 @@
+## コンテナの一覧確認（全てのコンテナ）
+## docker ps -a
+## コンテナの一覧確認（起動中のコンテナのみ）
+## docker ps
+
+## コンテナを作成して起動
+## docker run [IMAGE]
+
+## コンテナを作成して起動からログインしてbashで操作（フォアグラウンドで実行）
+## docker run -i -t [IMAGE] /bin/bash
+## コンテナを作成して起動からログインしてbashで操作（バックグラウンドで実行）
+## docker run -i -t -d [IMAGE] /bin/bash
+## コンテナへログインしてbashで操作（起動中のコンテナのみ）
+## docker exec -i -t [CONTAINER_ID] bash
+
+## exitedしたコンテナに入って調べる
+## docker commit { コンテナID } { コンテナ名を適当に付ける }
+## docker run --rm -it { 適当につけたコンテナ名 } sh
+
+## コンテナから抜ける
+## exit
+
+## 最新verのGoを使用
+FROM golang:latest
+
+## コンテナにappディレクトリを作成
+RUN mkdir /go/src/app
+
+## appに移動
+WORKDIR /go/src/app
+
+## ローカルで作成したものをコンテナにコピー
+## COPY . /app
+
+##RUN go env -w GO111MODULE=auto
+## go.mod作成
+##RUN go mod init
+
+## 外部パッケージ取得
+## RUN go get -d -v ./...
+##RUN go mod tidy
+##RUN go get github.com/labstack/echo/v4
+## コンテナ実行時に実行される 
+CMD ["go", "run", "main.go"]
+
+
+
